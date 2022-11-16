@@ -15,7 +15,7 @@ namespace Domain.Models
 
         [StringLength(100)]
         [Required]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
