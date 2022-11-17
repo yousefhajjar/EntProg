@@ -23,6 +23,7 @@ namespace Domain.Models
         public double Price { get; set; }
         public string Description { get; set; }
         public string PhotoPath { get; set; }
+        public int Stock { get; set; }
 
     }
 }

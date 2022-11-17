@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using DataAccess.Context;
+using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +8,31 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories
 {
-    internal class ItemRepositories
+    public class ItemRepositories
     {
-        public IQueryable<Item> GetItems()
-        { return null; }
 
-        public void AddItem()
+        private ShoppingCartContext context { get; set; }
+
+        public ItemRepositories(ShoppingCartContext _context)
         {
+            context = _context;
+        }
 
+        public IQueryable<Item> GetItems()
+        { 
+            return context.Items; 
+        }
 
+        public void AddItem(Item i)
+        {
+            context.Items.Add(i);
+            context.SaveChanges();
+        }
+
+        public void DeleteItem(Item i)
+        {
+            context.Items.Remove(i);
+            context.SaveChanges();
         }
     }
 }
