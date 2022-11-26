@@ -1,30 +1,22 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Models
+namespace BusinessLogic.ViewModels
 {
-    public class Item
+    //is a selection of the required properties to be used by the presetation (interface) layer
+    public class CreateItemViewModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
-        [StringLength(100)]
-        [Required]
         public string Name { get; set; }
-
-        [ForeignKey("Category")]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
         public string PhotoPath { get; set; }
         public int Stock { get; set; }
-
     }
 }

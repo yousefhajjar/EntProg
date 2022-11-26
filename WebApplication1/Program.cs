@@ -1,4 +1,6 @@
+using BusinessLogic.Services;
 using DataAccess.Context;
+using DataAccess.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +15,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ShoppingCartContext>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<ItemsServices>();
+builder.Services.AddScoped<ItemRepositories>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
