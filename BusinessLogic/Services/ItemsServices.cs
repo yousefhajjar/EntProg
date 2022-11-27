@@ -42,6 +42,11 @@ namespace BusinessLogic.Services
 
         }
 
+        public void Checkout()
+        {
+            
+        }
+
         public IQueryable<ItemViewModel> GetItems() 
         {
             var list = from i in ir.GetItems()
@@ -56,6 +61,21 @@ namespace BusinessLogic.Services
                            Stock = i.Stock,
                        };
             return list;
+        }
+
+        public ItemViewModel GetItem(int id)
+        {
+            return GetItems().SingleOrDefault(x => x.Id == id);
+        }
+
+        public IQueryable<ItemViewModel> Search(string keyword)
+        {
+            return GetItems().Where(x => x.Name.Contains(keyword));
+        }
+
+        public IQueryable<ItemViewModel> Search(string keyword, double minPrice, double maxPrice)
+        {
+            return Search(keyword).Where(x => x.Price >= minPrice && x.Price <= maxPrice);
         }
 
     }
