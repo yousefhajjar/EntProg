@@ -14,7 +14,7 @@ namespace BusinessLogic.Services
 
         public ItemsServices(ItemRepositories _itemRepositories) 
         {
-            this.ir = _itemRepositories;
+            ir = _itemRepositories;
         
         }
 

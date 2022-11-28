@@ -1,6 +1,7 @@
 using BusinessLogic.Services;
 using DataAccess.Context;
 using DataAccess.Repositories;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ItemsServices>();
 builder.Services.AddScoped<ItemRepositories>();
+builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+builder.Services.AddScoped<CategoriesServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

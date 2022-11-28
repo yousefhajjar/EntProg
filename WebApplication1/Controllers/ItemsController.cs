@@ -8,10 +8,13 @@ namespace WebApplication1.Controllers
     public class ItemsController : Controller
     {
         private ItemsServices itemsService;
-        public ItemsController(ItemsServices _itemsService) 
+        private IWebHostEnvironment host;
+        public ItemsController(ItemsServices _itemsService, IWebHostEnvironment _host) 
         {
             itemsService = _itemsService;
+            host = _host;
         }
+
         //a method to open the page, then th user starts typing
         [HttpGet]
         public IActionResult Create()
@@ -21,10 +24,23 @@ namespace WebApplication1.Controllers
 
         //a method to handle the submission of the form
         [HttpPost]
-        public IActionResult Create(CreateItemViewModel data)
+        public IActionResult Create(CreateItemViewModel data, IFormFile file)
         {
             try
             {
+                if(file != null) 
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string absolutePath = host.WebRootPath;
+
+                    using (FileStream fsOut = new(absolutePath + "\\Images\\" + fileName, FileMode.CreateNew))
+                    {
+                        file.CopyTo(fsOut);
+                    }
+
+                    data.PhotoPath = "/Images/" + fileName;
+                }
+
                 itemsService.AddItem(data); //to test
                 ViewBag.Message = "Item successfully created!";
             }
