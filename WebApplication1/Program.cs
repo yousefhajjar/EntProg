@@ -18,8 +18,13 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ItemsServices>();
 builder.Services.AddScoped<ItemRepositories>();
+
+FileInfo fi = new FileInfo(@"C:\Users\youse\OneDrive\Desktop\School\Enterprise Prog\EnterpriseProgSolution\WebApplication1\Data\categories.txt");
+//builder.Services.AddScoped<ICategoriesRepository, CategoriesFileRepository>(x => new CategoriesFileRepository(fi));
+
 builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 builder.Services.AddScoped<CategoriesServices>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

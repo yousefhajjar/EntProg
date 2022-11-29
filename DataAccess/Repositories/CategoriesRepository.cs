@@ -17,9 +17,9 @@ namespace DataAccess.Repositories
             context = _context;
         }
 
-        public IQueryable<Category> GetCategories() 
+        public IQueryable<Category> GetCategories()
         {
-            return (IQueryable<Category>)context.Categories;
+            return context.Categories;
         }
     }
 }

@@ -19,11 +19,11 @@ namespace DataAccess.Context
         public ShoppingCartContext(DbContextOptions<ShoppingCartContext> options)
                : base(options)
         {
-
+            
         }
 
         public DbSet<Item> Items { get; set; } // an abstraction of the tables therefore plural name
-        public DbSet<Item> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
     }
 }
